@@ -1,0 +1,156 @@
+<?php 
+include 'control.php';
+	if (isset($_GET['edit'])) {
+		$id = $_GET['edit'];
+		$record = mysqli_query($conn, "SELECT * FROM scores WHERE StudentsId='$id'");
+		$record2 = mysqli_num_rows($record);
+		
+		if ($record2 == 1 ) {
+			$row = mysqli_fetch_assoc($record);
+			$name = $row["Name"];
+			$gender = $row["Gender"];
+			$class = $row["Student_Class"];
+			$subject = $row["Subject"];
+			$ore = $row["ORE"];
+			$assignment = $row["Assignment"];
+			$ca = $row["C_A"];
+			$note = $row["Note"];
+			$project = $row["Project"];
+			$midterm = $row["MidtermTest"];
+			$attend = $row["Attendance"];
+			$exam = $row["Exam"];
+			$total = $row["Total"];
+			$photo = $row["Avatar"];
+		}
+	}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Css Result Checker</title>
+	<link rel="stylesheet"  href="main.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+<header>
+	<div class="container">
+	<div class="header-top">
+		<h1 class="text-center">CSS Ukwulu Result Checker</h1>
+	</div>
+
+</header>
+</div>
+
+<section>
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-12 col-md-3">
+
+			<?php include 'sidenav.php'?>
+		
+		</div>
+		<div class="col-sm-12 col-md-6">
+		<div class="card text-left my-5">
+ 		<div class=" card-header text-center">
+ 			<?php echo "<p class ='lead'><b>Update Record For ". $name."</b></p>";?>
+ 		</div>
+ 		<div class="card-body">
+ 		<form method="post" action="control.php" enctype="multipart/form-data">
+ 			<div class="form-group">
+ 				<input type="hidden" name="id" value="<?php echo $id ?>">
+ 			<label><b>Name:</b> </label>
+ 			<input type="text" name="name" value="<?php echo $name ?>" class="form-control" placeholder="Students Name" required="required "><br>
+
+ 			<label><b>Gender:</b> </label>
+ 			<input type="text" name="gender" value="<?php echo $gender ?>" class="form-control" placeholder="Student's Gender" required="required "><br>
+
+ 			<label><b>Select Class:</b> </label>
+ 			<select class="form-control" name="class">
+ 				<option value="<?php echo $class ?>"><?php echo $class ?></option>
+			  <option value="Jss1 A">Jss1 A</option>
+			  <option value="Jss1 B">Jss1 B</option>
+			  <option value="Jss2 A">Jss2 A</option>
+			  <option value="Jss2 B">Jss2 B</option>
+			  <option value="Jss3 A">Jss3 A</option>
+			  <option value="Jss3 B">Jss3 B</option>
+			</select><br>
+
+			<label><b>Select Subject:</b> </label>
+ 			<select class="form-control" name="subject">
+ 				<option value="<?php echo $subject ?>"><?php echo $subject ?></option>
+			  <option value="Computer Science">Computer Science</option>
+			  <option value="Data Processing">Data Processing</option>
+			  <option value="Mathematics">Mathematics</option>
+			  <option value="English">English</option>
+			  <option value="Agric Science">Agric Science</option>
+			  
+			</select><br>
+
+ 			<label><b>ORE Scores:</b></label>
+ 			<input type="text" name="ore" value="<?php echo $ore ?>" class="form-control" placeholder="ORE score" ><br>
+
+ 			<label><b>Assignment Scores:</b></label>
+ 			<input type="text" name="assign" value="<?php echo $assignment ?>" class="form-control" placeholder="Assignment score" ><br>
+
+ 			<label><b>Continous Assessment:</b></label>
+ 			<input type="text" name="ca" value="<?php echo $ca ?>" class="form-control" placeholder="Continous Assessment Score"><br>
+ 			
+ 			<label><b>Note:</b></label>
+ 			<input type="text" name="note" value="<?php echo $note ?>" class="form-control" placeholder="Note"><br>
+
+ 			<label><b>Project:</b></label>
+ 			<input type="text" name="project" value="<?php echo $project ?>" class="form-control" placeholder="Project Score"><br>
+
+ 			<label><b>Mid-Term Test:</b></label>
+ 			<input type="text" name="mid-term" value="<?php echo $midterm ?>" class="form-control" placeholder="Mid-Term score"><br>
+
+ 			<label><b>Attendance:</b></label>
+ 			<input type="text" name="attend" value="<?php echo $attend ?>" class="form-control" placeholder="Attendance score"><br>
+
+
+ 			<label><b>Exam:</b></label>
+ 			<input type="text" name="exam" value="<?php echo $exam ?>" class="form-control" placeholder="Exam score"><br>
+
+
+ 			<!-- <label><b>Grade:</b></label>
+ 			<input type="text" name="grade" class="form-control" placeholder="Grade" required="required"><br> -->
+
+
+ 		
+ 			<div class="text-center">
+			<input type="submit" class ="btn btn-success center" name="update" value="Update Record">
+		</div>
+
+			</div>
+ 			
+ 		</form>
+ 		</div>
+ 	</div>
+	</div>
+	<div class="col-sm-12 col-md-3">
+		</div>
+	</div>
+</div>
+
+</section>
+
+<footer class="footer">
+	
+
+</footer>
+
+<script src="jquery/jquery.min.js"></script>
+ <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../assets/js/vendor/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+<script>
+$(".nav-pills .nav-link").on("click", function(){
+    $(".nav-pills .nav-link").removeClass("active");
+    $(this).addClass("active");
+  });</script>
+</body>
+</html>
