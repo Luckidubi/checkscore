@@ -1,3 +1,4 @@
 /uploads
+/vendor
 connection.php
 result.sql
